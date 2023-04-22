@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block menu %}
     {% if photo.author == user or user.is_superuser %}
+
     <a href="{% url 'photo_delete' photo.pk %}">
         <button type="button" class="btn btn-warning" style="margin-left: 10px">Удалить</button>
     </a>

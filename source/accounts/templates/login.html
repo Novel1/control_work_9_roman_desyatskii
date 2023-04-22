@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+{% block menu %}
+{% endblock %}
+{% block content %}
+    <div id="container" class="container">
+        <div class="window">
+            <form action="{% url 'login' %}" method="post">
+                <div class="footer">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    {% bootstrap_button button_type='submit' content='Войти'%}
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

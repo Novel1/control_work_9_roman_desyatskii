@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block menu %}
+    {% if photo.author == user or user.is_superuser %}
+    <a href="{% url 'photo_delete' photo.pk %}">
+        <button type="button" class="btn btn-warning" style="margin-left: 10px">Удалить</button>
+    </a>
+    <a href="{% url 'photo_update' photo.pk %}">
+        <button type="button" style="margin-left: 10px" class="btn btn-warning">Редактировать</button>
+    </a>
+    {% endif %}
+{% endblock %}
+{% block content %}
+<div class="px-4 py-5 my-5 text-center">
+    <img src="{{ photo.avatar.url }}" alt="">
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4"><strong>Подпись: </strong>{{ photo.title }}</p>
+        <p class="lead mb-4"><strong>Автор: </strong>{{ photo.author }}</p>
+        <p class="lead mb-4"><strong>Дата создания: </strong>{{ photo.created_at }}</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <a href="{% url 'index' %}"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">Вернуться назад</button></a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

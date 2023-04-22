@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+    <div class="container">
+        <h1>Gallery</h1>
+        <hr>
+        <h4>Paintings by famous artists</h4>
+        {% for photo in photos %}
+            <div class="card" style="width: 60rem; margin: 10px 0">
+                <img src="{{ photo.avatar.url }}">
+                <div class="card-body">
+                    <p class="card-text"><strong>Подпись:</strong> {{ photo.title }}</p>
+                    <p class="card-text"><strong>Время публикаци:</strong> {{ photo.created_at }}</p>
+                    <p><strong>Добавленных в избранное: </strong>{{ photo.users.count }}</p>
+                    <p><strong>Автор: </strong>{{ photo.author }}</p>
+                    {% if user.is_authenticated %}
+                        <form action="{% url 'to_favorite' photo.pk %}" method="post">
+                            {% csrf_token %}
+
+                            {% bootstrap_button button_type="submit" content='Добавить в избранное' %}
+
+                        </form>
+                    {% endif %}
+                    <div class="btn-group">
+                        <a href="{% url 'photo_view' photo.pk %}">
+                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

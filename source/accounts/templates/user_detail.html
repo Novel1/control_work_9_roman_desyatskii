@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block menu %}
+       <a href="{% url 'create_photo' %}" class="btn btn-light">Добавить фото</a>
+{% endblock %}
+{% block content %}
+    <div class="boxs" style="display:flex; margin-left: 100px">
+        {% if user_obj.profile_photo.url %}
+            <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <img class="avatar" src="{{ user_obj.profile_photo.url }}" width="250" height="250" alt="user picture"
+                 style="border-radius: 120px">
+            </form>
+        {% endif %}
+        <div class="inform" style="padding: 50px">
+            <h3>Information about user</h3>
+            <p><strong>Login: </strong>{{ user_obj.username }}</p>
+            <p><strong>Name: </strong>{{ user_obj.first_name }}</p>
+            <p><strong>Last name: </strong>{{ user_obj.last_name }}</p>
+            <p><strong>Email: </strong>{{ user_obj.email }}</p>
+        </div>
+    </div>
+        <hr>
+{% endblock %}

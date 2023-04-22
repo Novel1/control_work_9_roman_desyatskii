@@ -6,6 +6,6 @@
 4) Активировать виртуальное окружение . venv/bin/activate
 5) Установите зависимости командой pip install -r requirements.txt
 6) Далее перейдите в папку source командой cd source
-7) Загрузите фикстуры командой python3 manage.py loaddata fixtires/auth.json, python3 manage.py loaddata fixtires/dump.json 
+7) Загрузите фикстуры командой python3 manage.py loaddata fixtures/auth.json, python3 manage.py loaddata fixtires/dump.json 
 8) Делаем миграцию командой ./manage.py migrate
 9) И запустите приложение командой ./manage.py runserver
